@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 import numpy as np
 
 from complex_systems import discrete_complex_systems as discrete
