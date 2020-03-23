@@ -1,4 +1,6 @@
 #!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+import roadrunner
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
@@ -187,3 +189,22 @@ class PPVModel(ContinuousComplexSystem):
         plt.ylabel('Value')
         plt.legend(loc='upper right')
         plt.show()
+
+
+class BrusselatorModel(ContinuousComplexSystem):
+    """
+    The Brusselator is a theoretical model for a type of autocatalytic reaction.
+
+    https://en.wikipedia.org/wiki/Brusselator
+    """
+    def __init__(self):
+        import os
+        path = 'complex_systems/models/brusselator.xml'
+        self.rr = roadrunner.RoadRunner(os.path.abspath(path))
+
+    def evolve(self, start=0, end=10, outputs=100):
+        result = self.rr.simulate(start, end, outputs)
+        return result
+
+    def plot(self):
+        self.rr.plot()
